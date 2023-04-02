@@ -1,0 +1,251 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class CommandeList extends StatefulWidget {
+  @override
+  _CommandeListState createState() => _CommandeListState();
+}
+
+class _CommandeListState extends State<CommandeList> {
+  List<dynamic> _commandes = [];
+
+  Future<List<dynamic>> _fetchCommandes() async {
+    final response = await http.get('https://example.com/api/commandes' as Uri);
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load commandes');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCommandes().then((commandes) {
+      setState(() {
+        _commandes = commandes;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Liste des commandes'),
+      ),
+      body: ListView.builder(
+        itemCount: _commandes.length,
+        itemBuilder: (BuildContext context, int index) {
+          final commande = _commandes[index];
+          return ListTile(
+            title: Text(commande['nom']),
+            subtitle: Text(commande['date']),
+            trailing: Text('\$${commande['prix']}'),
+          );
+        },
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:water_report/env.sample.dart';
+
+class Commande {
+  final String nomClient;
+  final String adresseClient;
+  final DateTime dateCommande;
+  final String produit;
+  final int quantite;
+  final String etat;
+
+  Commande(
+      {required this.nomClient,
+      required this.adresseClient,
+      required this.dateCommande,
+      required this.produit,
+      required this.quantite,
+      required this.etat});
+
+  factory Commande.fromJson(Map<String, dynamic> json) {
+    return Commande(
+      nomClient: json['client'] is Map ? json['client']['nom'] : "",
+      adresseClient: json['client'] is Map ? json['client']['adresse'] : "",
+      dateCommande: DateTime.parse(json['date_commande'] ?? ""),
+      produit: json['produit'] is Map ? json['produit']['nom'] : "",
+      quantite: json['quantite'] is List ? json['quantite'][0] : 0,
+      etat: json['etat'] ?? "",
+    );
+  }
+}
+
+class CommandeWidget extends StatefulWidget {
+  @override
+  _CommandeWidgetState createState() => _CommandeWidgetState();
+}
+
+class _CommandeWidgetState extends State<CommandeWidget> {
+  List<Commande> _commandes = [];
+
+  Future<void> _fetchCommandes() async {
+    final response = await http.get(Uri.parse('$apiUrl/commands'));
+    final jsonData = jsonDecode(response.body);
+    List<Commande> commandes = [];
+    for (var item in jsonData) {
+      Commande commande = Commande.fromJson(item);
+      commandes.add(commande);
+    }
+    setState(() {
+      _commandes = commandes;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCommandes();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('$_commandes'),
+      ),
+      body: ListView.builder(
+        itemCount: _commandes.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ExpansionTile(
+            title: Text(
+                '${_commandes[index].nomClient} - ${_commandes[index].dateCommande}'),
+            children: [
+              ListTile(
+                title: Text('Adresse : ${_commandes[index].adresseClient}'),
+              ),
+              ListTile(
+                title: Text('Produit : ${_commandes[index].produit}'),
+              ),
+              ListTile(
+                title: Text('Quantité : ${_commandes[index].quantite}'),
+              ),
+              ListTile(
+                title: Text('Etat : ${_commandes[index].etat}'),
+              ),
+              ButtonBar(
+                children: [
+                  ElevatedButton(
+                    child: Text('Livrer'),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+*/
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:water_report/env.sample.dart';
+
+class CommandeWidget extends StatefulWidget {
+  @override
+  _CommandeWidget createState() => _CommandeWidget();
+}
+
+class _CommandeWidget extends State<CommandeWidget> {
+  List<dynamic> _commandes = [];
+
+  Future<List<dynamic>> _fetchCommandes() async {
+    final response = await http.get(Uri.parse('$apiUrl/commandes'));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load commandes');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCommandes().then((commandes) {
+      setState(() {
+        _commandes = commandes;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Liste des commandes'),
+      ),
+      body: ListView.builder(
+        itemCount: _commandes.length,
+        itemBuilder: (BuildContext context, int index) {
+          final commande = _commandes[index];
+          return ListTile(
+            /* title: Text(commande['date_commande']),
+            subtitle: Text(commande['quantite']),
+            trailing*/
+            title: Text('\$${commande['etat']}'),
+          );
+        },
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@override
+ Widget build(BuildContext context) {
+ return Scaffold(
+ appBar: AppBar(
+ title: Text('Liste des commandes'),
+ ),
+ body: ListView.builder(
+ itemCount: _commandes.length,
+ itemBuilder: (BuildContext context, int index) {
+ final commande = _commandes[index];
+ return FutureBuilder(
+ future: _fetchClient(commande['client']),
+ builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+ if (snapshot.hasData) {
+ final client = snapshot.data;
+ return ListTile(
+ title: Text(commande['nom']),
+ subtitle: Text('${client['nom']} ${client['prenom']}'),
+ trailing: Text('$${commande['prix']}'),
+ );
+ } else if (snapshot.hasError) {
+ return 
+Text('Erreur de chargement du client');
+ } else {
+ return ListTile(
+ title: Text(commande['nom']),
+ subtitle: Text('Chargement...'),
+ trailing: Text('$${commande['prix']}'),
+ );
+ }
+ },
+ );
+ },
+ ),
+ );
+ }
+}
