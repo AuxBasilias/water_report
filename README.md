@@ -1,20 +1,26 @@
-<<<<<<< HEAD
+
 # water_report
+L'application est appelée "WATER REPORT", elle permet de livrer des comandes de produits d'une entreprise qui commercialise l'eau.
 
-Water!!!!
+## Description
+L'application "WATER REPORT" permet aux Agents de l'entreprise de  livrer des produits de l'entreprise ESSIVI SARL qui est une entreprise fictive spécialisée dans la vente d'eau. Les clients passent des commandes au près de l'entreprise, les livreurs reçoivent les commandes sur l'application et livrent les commande aux domicile du clients.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Fonctionnalités
+Livrer les commandes des clients à leur domicile
+Enregistrer un client et sa position
+Faire une vente
+Historique des commandes et des ventes
 
-A few resources to get you started if this is your first Flutter project:
+## Captures d'écran
+Ajoutez des captures d'écran pour montrer l'interface utilisateur de l'application.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Configuration requise
+Android 6.0 ou ultérieur
+Connexion Internet
+Installation
+Expliquez comment les utilisateurs peuvent installer l'application.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# water_report
->>>>>>> origin/master
+## Utilisation
+
+# Docuentation en curs
