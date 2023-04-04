@@ -23,4 +23,4 @@ Expliquez comment les utilisateurs peuvent installer l'application.
 
 ## Utilisation
 
-# Docuentation en curs
+# Docuentation en cours
