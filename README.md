@@ -7,20 +7,21 @@ L'application "WATER REPORT" permet aux Agents de l'entreprise de  livrer des pr
 
 
 ## Fonctionnalités
-Livrer les commandes des clients à leur domicile
-Enregistrer un client et sa position
-Faire une vente
-Historique des commandes et des ventes
+- Livrer les commandes des clients à leur domicile
+- Enregistrer un client et sa position
+- Faire une vente
+- Historique des commandes et des ventes
 
 ## Captures d'écran
-Ajoutez des captures d'écran pour montrer l'interface utilisateur de l'application.
+
 
 ## Configuration requise
 Android 6.0 ou ultérieur
 Connexion Internet
-Installation
-Expliquez comment les utilisateurs peuvent installer l'application.
+
+##Installation
+
 
 ## Utilisation
 
-# Docuentation en cours
+### Docuentation en cours
