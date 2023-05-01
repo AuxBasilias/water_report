@@ -3,7 +3,7 @@
 L'application est appelée "WATER REPORT", elle permet de livrer des comandes de produits d'une entreprise qui commercialise l'eau.
 
 ## Description
-L'application "WATER REPORT" permet aux Agents de l'entreprise de  livrer des produits de l'entreprise ESSIVI SARL qui est une entreprise fictive spécialisée dans la vente d'eau. Les clients passent des commandes au près de l'entreprise, les livreurs reçoivent les commandes sur l'application et livrent les commande aux domicile du clients.
+L'application mobile qui permet aux Agents de l'entreprise(fictive) ESSIVI SARL de livrer les commandes de ses clients. Les clients passent des commandes au près de l'entreprise, les livreurs reçoivent les commandes sur l'application et livrent les commandes aux domicile du clients.
 
 
 ## Fonctionnalités
