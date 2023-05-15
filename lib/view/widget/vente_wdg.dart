@@ -426,6 +426,10 @@ class _VenteState extends State<Vente> {
   void initState() {
     super.initState();
     _fetchVentes();
+    Future.delayed(Duration(seconds: 1)).then((value) {
+      super.initState();
+      _fetchVentes();
+    });
   }
 
   @override
@@ -442,7 +446,7 @@ class _VenteState extends State<Vente> {
               final client = snapshot.data[0];
               final produit = snapshot.data[1];
               return ExpansionTile(
-                title: Text('${client['nom']} - ${produit['nom']}'),
+                title: Text('Client : ${client['nom']} - ${produit['nom']}'),
                 collapsedBackgroundColor: Color.fromARGB(255, 182, 211, 235),
                 backgroundColor: Colors.white,
                 children: [
