@@ -1,0 +1,3 @@
+[submodule "api_django"]
+	path = api_django
+	url = ./api_django
